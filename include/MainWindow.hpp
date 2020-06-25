@@ -2,6 +2,9 @@
 #define __MAINWINDOW_H
 
 #include <QtWidgets>
+#include <QLabel>
+
+#include "include/ClusterWidget.hpp"
 
 
 class MainWindow : public QMainWindow {
@@ -13,7 +16,9 @@ class MainWindow : public QMainWindow {
 	protected:
 
 	private:
-
+		QWidget *mainWidget;
+		QVBoxLayout *mainVBox;
+		ClusterWidget *clusterWidget[9];
 };
 
 #endif // __MAINWINDOW_H

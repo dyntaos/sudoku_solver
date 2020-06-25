@@ -5,8 +5,8 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 find_package(Qt5 COMPONENTS REQUIRED Core Gui Widgets)
 
-set(project_sources main.cpp MainWindow.cpp board.cpp)
-set(project_headers include/MainWindow.hpp include/board.hpp)
+set(project_sources main.cpp MainWindow.cpp board.cpp ClusterWidget.cpp)
+set(project_headers include/MainWindow.hpp include/board.hpp include/ClusterWidget.hpp)
 qt5_wrap_cpp(moc_sources ${project_headers})
 
 add_executable(SudokuSolver ${project_sources} ${project_headers} ${moc_sources})
