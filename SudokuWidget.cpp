@@ -1,6 +1,6 @@
 #include "include/SudokuWidget.hpp"
 
-SudokuWidget::SudokuWidget() {
+SudokuWidget::SudokuWidget(BoardModel& model) {
 	int vDividerNum = 0;
 
 	mainVBox = new QVBoxLayout();
@@ -26,17 +26,36 @@ SudokuWidget::SudokuWidget() {
 		}
 	}
 
-	for (int i = 0; i < 9; i++) {
-		clusters[i] = new ClusterWidget();
-		hBoxRow[i / 3]->addWidget(clusters[i]);
-		if (i % 3 != 2) {
-			vDividerLine[vDividerNum] = new QFrame();
-			vDividerLine[vDividerNum]->setFrameShape(QFrame::VLine);
-			vDividerLine[vDividerNum]->setFrameShadow(QFrame::Plain);
-			vDividerLine[vDividerNum]->setContentsMargins(0, 0, 0, 0);
-			vDividerLine[vDividerNum]->setLineWidth(2);
-			hBoxRow[i / 3]->addWidget(vDividerLine[vDividerNum]);
-			vDividerNum++;
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++) {
+			clusters[i][j] = new ClusterWidget(model, i, j);
+			hBoxRow[i]->addWidget(clusters[i][j]);
+			if (j != 2) {
+				vDividerLine[vDividerNum] = new QFrame();
+				vDividerLine[vDividerNum]->setFrameShape(QFrame::VLine);
+				vDividerLine[vDividerNum]->setFrameShadow(QFrame::Plain);
+				vDividerLine[vDividerNum]->setContentsMargins(0, 0, 0, 0);
+				vDividerLine[vDividerNum]->setLineWidth(2);
+				hBoxRow[i]->addWidget(vDividerLine[vDividerNum]);
+				vDividerNum++;
+			}
+		}
+	}
+}
+
+void SudokuWidget::setTileValue(int x, int y, const QString & val) {
+	//TODO Validate args
+	clusters[x / 3][y / 3]->setTileValue(x % 3, y % 3, val);
+}
+
+void SudokuWidget::drawModel(const BoardModel & model) {
+	for (int x = 0; x < 9; x++) {
+		for (int y = 0; y < 9; y++) {
+			if (model.hasTileValue(x, y)) {
+				setTileValue(x, y, QString::number(model.getTileValue(x, y)));
+			} else {
+				setTileValue(x, y, "");
+			}
 		}
 	}
 }

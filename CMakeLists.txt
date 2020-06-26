@@ -5,18 +5,29 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 find_package(Qt5 COMPONENTS REQUIRED Core Gui Widgets)
 
+set(CMAKE_BUILD_TYPE Debug)
+
 set(project_sources
 	main.cpp
 	MainWindow.cpp
-	board.cpp
+	BoardModel.cpp
+	ClusterModel.cpp
+	TileModel.cpp
 	ClusterWidget.cpp
 	SudokuWidget.cpp
+	Publisher.cpp
+	QClickableLabel.cpp
 )
 set(project_headers
 	include/MainWindow.hpp
-	include/board.hpp
+	include/BoardModel.hpp
+	include/ClusterModel.hpp
+	include/TileModel.hpp
 	include/ClusterWidget.hpp
 	include/SudokuWidget.hpp
+	include/Subscriber.hpp
+	include/Publisher.hpp
+	include/QClickableLabel.hpp
 )
 qt5_wrap_cpp(moc_sources ${project_headers})
 

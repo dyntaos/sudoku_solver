@@ -1,15 +1,16 @@
-#include "include/MainWindow.hpp"
-
 #include <QtDebug> //TODO: Remove
 
-MainWindow::MainWindow(Board & sudokuBoard) : sudokuBoard(sudokuBoard) {
+#include "include/MainWindow.hpp"
+
+
+MainWindow::MainWindow(BoardModel & sudokuBoard) : sudokuBoard(sudokuBoard) {
 	mainWidget = new QWidget();
 
 	mainBox = new QHBoxLayout();
 	mainBox->setContentsMargins(0, 0, 0, 0);
 	mainBox->setSpacing(0);
 
-	sudokuWidget = new SudokuWidget();
+	sudokuWidget = new SudokuWidget(sudokuBoard);
 	mainBox->addWidget(sudokuWidget);
 
 	gridSpacer = new QSpacerItem(30, 30);
@@ -65,4 +66,9 @@ void MainWindow::handleButtonClicked() {
 	} else {
 		qDebug() << "Warning: Unknown sender to handleButtonClicked()" << endl;
 	}
+}
+
+
+void MainWindow::notified(void) {
+	sudokuWidget->drawModel(sudokuBoard);
 }

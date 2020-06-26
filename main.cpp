@@ -3,11 +3,11 @@
 #include <QCommandLineOption>
 
 #include "include/MainWindow.hpp"
-#include "include/board.hpp"
+#include "include/BoardModel.hpp"
 
 
 int main(int argc, char *argv[]) {
-	Board sudokuModel;
+	BoardModel sudokuModel;
 	QApplication app(argc, argv);
 	QCommandLineParser parser;
 	MainWindow mainWindow(sudokuModel);
@@ -15,6 +15,8 @@ int main(int argc, char *argv[]) {
 	QCoreApplication::setOrganizationName("Kale Yuzik");
 	QCoreApplication::setApplicationName("Sudoku Solver");
 	QCoreApplication::setApplicationVersion("0.1");
+
+	sudokuModel.addSubscriber(mainWindow);
 
 	parser.setApplicationDescription(QCoreApplication::applicationName());
 	parser.addHelpOption();
