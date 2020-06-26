@@ -2,7 +2,7 @@
 
 #include <QtDebug> //TODO: Remove
 
-MainWindow::MainWindow() {
+MainWindow::MainWindow(Board & sudokuBoard) : sudokuBoard(sudokuBoard) {
 	mainWidget = new QWidget();
 
 	mainBox = new QHBoxLayout();

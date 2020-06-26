@@ -6,16 +6,18 @@
 #include <QPushButton>
 
 #include "include/SudokuWidget.hpp"
+#include "include/board.hpp"
 
 
 class MainWindow : public QMainWindow {
 	Q_OBJECT
 
 	public:
-		MainWindow();
+		MainWindow(Board & sudokuBoard);
 
 
 	protected:
+		Board& sudokuBoard;
 
 	private:
 		QWidget *mainWidget;
