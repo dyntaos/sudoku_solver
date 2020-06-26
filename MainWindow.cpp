@@ -3,10 +3,12 @@
 
 MainWindow::MainWindow() {
 	mainWidget = new QWidget();
-	//mainVBox = new QVBoxLayout(mainWidget);
 	mainVBox = new QVBoxLayout();
-	clusterWidget[0] = new ClusterWidget();
-	mainVBox->addLayout(clusterWidget[0]);
+	mainVBox->setContentsMargins(0, 0, 0, 0);
+	mainVBox->setSpacing(0);
+	sudokuWidget = new SudokuWidget();
+	mainVBox->addWidget(sudokuWidget);
 	mainWidget->setLayout(mainVBox);
+	setContentsMargins(0, 0, 0, 0);
 	setCentralWidget(mainWidget);
 }

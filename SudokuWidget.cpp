@@ -1,6 +1,6 @@
-#include "include/ClusterWidget.hpp"
+#include "include/SudokuWidget.hpp"
 
-ClusterWidget::ClusterWidget() {
+SudokuWidget::SudokuWidget() {
 	int vDividerNum = 0;
 
 	mainVBox = new QVBoxLayout();
@@ -19,27 +19,22 @@ ClusterWidget::ClusterWidget() {
 		if (i < 2) {
 			hDividerLine[i] = new QFrame();
 			hDividerLine[i]->setFrameShape(QFrame::HLine);
-			hDividerLine[i]->setFrameShadow(QFrame::Sunken);
+			hDividerLine[i]->setFrameShadow(QFrame::Plain);
 			hDividerLine[i]->setContentsMargins(0, 0, 0, 0);
+			hDividerLine[i]->setLineWidth(2);
 			mainVBox->addWidget(hDividerLine[i]);
 		}
 	}
 
 	for (int i = 0; i < 9; i++) {
-		tileLabel[i] = new QLabel(QString::number(i));
-		tileLabel[i]->setAlignment(Qt::AlignCenter);
-		tileLabel[i]->setMinimumSize(40, 40);
-		tileLabel[i]->setContentsMargins(0, 0, 0, 0);
-		QFont tileFont;
-		tileFont.setPointSize(12);
-		tileFont.setFamily("SansSerif");
-		tileLabel[i]->setFont(tileFont);
-		hBoxRow[i / 3]->addWidget(tileLabel[i]);
+		clusters[i] = new ClusterWidget();
+		hBoxRow[i / 3]->addWidget(clusters[i]);
 		if (i % 3 != 2) {
 			vDividerLine[vDividerNum] = new QFrame();
 			vDividerLine[vDividerNum]->setFrameShape(QFrame::VLine);
-			vDividerLine[vDividerNum]->setFrameShadow(QFrame::Sunken);
+			vDividerLine[vDividerNum]->setFrameShadow(QFrame::Plain);
 			vDividerLine[vDividerNum]->setContentsMargins(0, 0, 0, 0);
+			vDividerLine[vDividerNum]->setLineWidth(2);
 			hBoxRow[i / 3]->addWidget(vDividerLine[vDividerNum]);
 			vDividerNum++;
 		}

@@ -4,7 +4,7 @@
 #include <QtWidgets>
 #include <QLabel>
 
-#include "include/ClusterWidget.hpp"
+#include "include/SudokuWidget.hpp"
 
 
 class MainWindow : public QMainWindow {
@@ -18,7 +18,7 @@ class MainWindow : public QMainWindow {
 	private:
 		QWidget *mainWidget;
 		QVBoxLayout *mainVBox;
-		ClusterWidget *clusterWidget[9];
+		SudokuWidget *sudokuWidget;
 };
 
 #endif // __MAINWINDOW_H
