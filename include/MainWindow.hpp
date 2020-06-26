@@ -2,7 +2,8 @@
 #define __MAINWINDOW_H
 
 #include <QtWidgets>
-#include <QLabel>
+#include <QSpacerItem>
+#include <QPushButton>
 
 #include "include/SudokuWidget.hpp"
 
@@ -13,12 +14,25 @@ class MainWindow : public QMainWindow {
 	public:
 		MainWindow();
 
+
 	protected:
 
 	private:
 		QWidget *mainWidget;
-		QVBoxLayout *mainVBox;
+		QHBoxLayout *mainBox;
 		SudokuWidget *sudokuWidget;
+		QSpacerItem *gridSpacer;
+
+		QWidget *solveButtonsGroup;
+		QVBoxLayout *solveButtonVBox;
+		QPushButton *solveConstraint;
+		QPushButton *solveSearch;
+		QPushButton *solveConstraintSearch;
+
+		QLabel *labelStats;
+
+	private slots:
+		void handleButtonClicked();
 };
 
 #endif // __MAINWINDOW_H

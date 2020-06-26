@@ -16,6 +16,7 @@ ClusterWidget::ClusterWidget() {
 		hBoxRow[i]->setSpacing(0);
 		hBoxRow[i]->setContentsMargins(0, 0, 0, 0);
 		mainVBox->addLayout(hBoxRow[i]);
+
 		if (i < 2) {
 			hDividerLine[i] = new QFrame();
 			hDividerLine[i]->setFrameShape(QFrame::HLine);
@@ -26,15 +27,19 @@ ClusterWidget::ClusterWidget() {
 	}
 
 	for (int i = 0; i < 9; i++) {
+		QFont tileFont;
+
 		tileLabel[i] = new QLabel(QString::number(i));
 		tileLabel[i]->setAlignment(Qt::AlignCenter);
 		tileLabel[i]->setMinimumSize(40, 40);
 		tileLabel[i]->setContentsMargins(0, 0, 0, 0);
-		QFont tileFont;
+
 		tileFont.setPointSize(12);
 		tileFont.setFamily("SansSerif");
 		tileLabel[i]->setFont(tileFont);
+
 		hBoxRow[i / 3]->addWidget(tileLabel[i]);
+
 		if (i % 3 != 2) {
 			vDividerLine[vDividerNum] = new QFrame();
 			vDividerLine[vDividerNum]->setFrameShape(QFrame::VLine);
