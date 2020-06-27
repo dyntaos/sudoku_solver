@@ -1,6 +1,7 @@
 #ifndef __SUDOKUWIDGET_HPP
 #define __SUDOKUWIDGET_HPP
 
+#include <stdexcept>
 #include <QtWidgets>
 #include <QLine>
 

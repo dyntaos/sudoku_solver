@@ -1,5 +1,7 @@
 #include "include/SudokuWidget.hpp"
 
+using namespace std;
+
 SudokuWidget::SudokuWidget(BoardModel& model) {
 	int vDividerNum = 0;
 
@@ -43,8 +45,13 @@ SudokuWidget::SudokuWidget(BoardModel& model) {
 	}
 }
 
+/**
+ * throws std::out_of_range if x or y argument is not in 0 to 8
+ */
 void SudokuWidget::setTileValue(int x, int y, const QString & val) {
-	//TODO Validate args
+	if (x < 0 || x > 8 || y < 0 || y > 8) {
+		throw out_of_range("Tile coordinate is outside of range.");
+	}
 	clusters[x / 3][y / 3]->setTileValue(x % 3, y % 3, val);
 }
 

@@ -1,5 +1,7 @@
 #include "include/ClusterWidget.hpp"
 
+using namespace std;
+
 ClusterWidget::ClusterWidget(BoardModel& model, int x, int y) : model(model), xCoord(x), yCoord(y) {
 	int vDividerNum = 0;
 
@@ -58,8 +60,13 @@ ClusterWidget::ClusterWidget(BoardModel& model, int x, int y) : model(model), xC
 	}
 }
 
+/**
+ * throws std::out_of_range if x or y argument is not in 0 to 8
+ */
 void ClusterWidget::setTileValue(int x, int y, const QString & val) {
-	//TODO Validate args
+	if (x < 0 || x > 8 || y < 0 || y > 8) {
+		throw out_of_range("Tile coordinate is outside of range.");
+	}
 	tileLabel[x][y]->setText(val);
 }
 
@@ -85,14 +92,15 @@ void ClusterWidget::handleLabelKeyRelease(QKeyEvent *event) {
 	switch (event->key()) {
 		case Qt::Key_Return:
 		case Qt::Key_Enter:
+		case Qt::Key_Escape:
 			qDebug() << "Enter key released" << endl;
 			l->clearFocus();
 			return;
 
 		case Qt::Key_Delete:
+		case Qt::Key_Backspace:
 			qDebug() << "Delete key released" << endl;
-			// l->setText("");
-			//TODO: Clear tile value
+			model.clearTileValue(l->getXCoordinate(), l->getYCoordinate());
 			l->clearFocus();
 			return;
 
@@ -139,7 +147,7 @@ void ClusterWidget::handleLabelKeyRelease(QKeyEvent *event) {
 	try {
 		model.setTileValue(l->getXCoordinate(), l->getYCoordinate(), key);
 	} catch (const std::runtime_error & e) {
-		//TODO: Anything here?
+
 	}
 	l->clearFocus();
 }

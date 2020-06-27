@@ -1,6 +1,7 @@
 #ifndef __CLUSTERWIDGET_HPP
 #define __CLUSTERWIDGET_HPP
 
+#include <stdexcept>
 #include <QtWidgets>
 #include <QLine>
 
